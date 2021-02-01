@@ -9,11 +9,19 @@ To fix Realtek ALC295 problem on Linux:
 sudo apt install alsa-tools
 
 
-2. Copy ALCHeadphoneStaticFix.sh and ALCRebootFromWinFix.sh files to /usr/local/bin
+2. Copy ALCRebootFromWinFix.sh and ALCHeadphoneStaticFix.sh files to /usr/local/bin and make sure chmod 755 is applied:
 
-    Make sure to have chmod 755
-    
+sudo cp ALCRebootFromWinFix.sh /usr/local/bin
+sudo chmod 755 /usr/local/bin/ALCRebootFromWinFix.sh
+
+sudo cp ALCHeadphoneStaticFix.sh /usr/local/bin
+sudo chmod 755 /usr/local/bin/ALCHeadphoneStaticFix.sh
+
+
 3. Run the scripts as root in a terminal to immediately fix the problems.
+
+ALCRebootFromWinFix.sh
+ALCHeadphoneStaticFix.sh
 
 
 4. To run the script on startup, use cron with the @reboot command:
@@ -21,11 +29,19 @@ sudo apt install alsa-tools
 sudo crontab -e
 
 and then add lines in crontab:
+
 @reboot /usr/local/bin/ALCRebootFromWinFix.sh
 @reboot /usr/local/bin/ALCHeadphoneStaticFix.sh
 
-5. To run /usr/local/bin/ALCHeadphoneStaticFix.sh script on resume from suspend, create a link to the file and put it in /lib/systemd/system-sleep
+
+5. To run /usr/local/bin/ALCHeadphoneStaticFix.sh script on resume from suspend, create a link to the file and put it in /lib/systemd/system-sleep :
+
+sudo ln -s /usr/local/bin/ALCHeadphoneStaticFix.sh /lib/systemd/system-sleep/ALCHeadphoneStaticFix.sh
+
+
 (ALCRebootFromWinFix.sh doesn't need this).
+
+
 
 For discussion thread, see:
 https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1648183
