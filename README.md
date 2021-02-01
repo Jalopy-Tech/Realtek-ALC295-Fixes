@@ -3,7 +3,7 @@ Fixes for the Realtek ALC295 codec for Linux and macOS
 
 ## Issues
 
-The Realtek ALC295 has the following issues (which are all be fixed):
+The Realtek ALC295 has the following issues (which can all be fixed):
 
 1. The audio has static noise in the left earphone when using headphones [Linux and macOS]
 2. When rebooting from Windows, the internal speakers don't work [Linux and macOS].
